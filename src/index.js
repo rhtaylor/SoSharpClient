@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {createContext} from 'react';
+import { Provider, useSelector, useDispatch } from 'react-redux'
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.css'; 
+import './scss/shop.scss';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 
