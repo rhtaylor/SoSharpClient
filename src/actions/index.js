@@ -14,4 +14,13 @@ export const SIGNED_IN = ({phone, barber}) => {
             payload: {phone, barber}
         })
     }
+} 
+
+export const ROOT_USER = ({password}) => {
+    return (dispatch) => {
+        dispatch({ 
+            type: 'ROOT_USER',
+            payload: {password}
+        })
+    }
 }

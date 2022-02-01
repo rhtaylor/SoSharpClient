@@ -1,5 +1,6 @@
 
-const BarberPole = ({darkMode}) =>{ 
+const BarberPole = ({darkMode}) =>{  
+  
        switch(darkMode){ 
         case true :
         return( 

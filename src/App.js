@@ -8,30 +8,33 @@ import { bindActionCreators } from 'redux';
 import {actionCreators} from './actions/actionCreators.js'
 import BarberPole from './components/BarberPole';
 import './index.css'
+import SwitchSignIn from './forms/SwitchSignIn';
+import MemoSingIn from './forms/SwitchSignIn';
+import BarberAppointment from './forms/BarberAppointment';
+import CutNavBar from './components/CutNavBar';
 
 const ToggleMode = createContext() 
-
+export {ToggleMode}
 
 
 function App() {  
-  const state = useSelector((state)=> state ) 
-  const dispatch = useDispatch() 
-
-  const AC = bindActionCreators(actionCreators, dispatch)
-  console.log(AC)
+  // const state = useSelector((state)=> state ) 
+  // const dispatch = useDispatch() 
+  // const AC = bindActionCreators(actionCreators, dispatch)
+ 
 
   const [darkMode, setMode] = useState(false) 
-  const [appointment, setAppointment] = useState(undefined)
-  const toggleMode = () =>{
+  const [appointment, setAppointment] = useState(undefined) 
+  const [waiting, setWaiting] = useState([])
+
+  const toggleMode = () =>{ 
+    debugger
     darkMode ? setMode(false) : setMode(true)
   } 
-  const createAppointment= useCallback( event =>{ 
-      debugger
-      event.preventDefault(); 
-      debugger 
-      setAppointment(event)
-
-  },[setAppointment, appointment ]) 
+  const createAppointment = ( event ) =>{ 
+      setAppointment(event) 
+      setWaiting(waiting.concat(appointment))
+  }
 
   return (<Row className="d-flex flex-row justify-content-left">
           <Col  md={2} className="d-flex flex-column mr-0 pr-0">
@@ -40,8 +43,8 @@ function App() {
           <Col>
           <ToggleMode.Provider value={darkMode}>
             <Button btn-sm className="ml-4 justify-content-left btn btn-xs" onClick={toggleMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</Button>
-            <ShopPendingCuts darkMode={darkMode} /> 
-            <SignIn darkMode={darkMode} handleSubmit={createAppointment}/>
+            <CutNavBar />
+            <BarberAppointment handleSubmit={createAppointment} />
           </ToggleMode.Provider>
           </Col>
           </Row>);

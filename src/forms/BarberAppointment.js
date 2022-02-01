@@ -1,61 +1,49 @@
-import React from 'react'
-import { useState } from "react";
-import { Form, Field } from 'react-final-form' 
-import Styles from "./Styles";
-import '../scss/shop.scss' 
+/* eslint-disable jsx-a11y/accessible-emoji */
+import React, {useContext} from 'react'
+import { render } from 'react-dom' 
 import {v1 as uuid} from 'uuid'
+import Styles from './Styles'
+import { Form, Field } from 'react-final-form'
+import { ToggleMode } from '../App'
 
-const SignIn = ({darkMode, handleSubmit}) => { 
+
+
+const BarberAppointment = ({handleSubmit}) =>{ 
+        const darkMode = useContext(ToggleMode)
     
-    debugger
-    return( 
-    <Styles className={`${darkMode ? 'bg-dark text-white' : 'bg-white'}`}>
-    <h1 className={`${darkMode ? 'text-white' : 'text-black'}`}>Sign In</h1>
-    <a  className={`${darkMode ? 'text-secondary' : 'text-light'}`}>
-      Dev by Randy
-    </a>
+  return( <Styles className={`${darkMode ? 'bg-dark text-white' : 'bg-white'}`}>
+  <h1 className={`${darkMode ? 'text-white' : 'text-black'}`}>Sign In</h1>
+  <a  className={`${darkMode ? 'text-secondary' : 'text-light'}`}>
+    Dev by Randy
+  </a>
     <Form
-      onSubmit={(e)=>handleSubmit(e)}
-      initialValues={{ barber: 'any' }}
+      onSubmit={handleSubmit}
+      initialValues={{ barber: 'any'}}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
-        <form>
-          <div className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
+        <form onSubmit={(e)=>handleSubmit(e)}>
+          <div>
             <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>First Name</label>
             <Field
               name="firstName"
               component="input"
               type="text"
-              placeholder="First Name" 
-              key={uuid()}
+              placeholder="First Name"
             />
           </div>
-          
-          <div key={darkMode} className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
-            <label key={uuid()}  
-            className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Last Name</label>
+          <div>
+            <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Last Name</label>
             <Field
               name="lastName"
               component="input"
               type="text"
               placeholder="Last Name"
             />
-          </div> 
-
-          <div key={uuid()} className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
-            <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Cut Style</label>
-            <Field name="favoriteColor" component="select">
-              <option />
-              <option value="SicissorsCut">Sicissors Cut</option>
-              <option value="LowFade">Low Fade</option>
-              <option value="MidFade">Mid Fade</option>
-              <option value="HighFade">High Fade</option>
-              <option value="BoxFade">Box Fade</option>
-              <option value="SkinFade">Skin Fade</option>
-              <option value="BuzzCut">Buzz Cut</option>
-            </Field>
           </div>
+                
+
           <div>
-            <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Add Product</label>
+            <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Add Product</label> 
+            <div>
             <Field name="products" component="select" multiple>
               <option value="beardTrim">🧔🏽 Beard Trim</option>
               <option value="beardOil">🧴 Beard Oil</option>
@@ -63,6 +51,7 @@ const SignIn = ({darkMode, handleSubmit}) => {
               <option value="cologne perfume">👃 cologne & perfume</option>
             </Field>
           </div>
+          </div> 
 
           <div>
             <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Barber</label>
@@ -107,6 +96,8 @@ const SignIn = ({darkMode, handleSubmit}) => {
           </div>
 
 
+         
+
           <div>
             <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Notes</label>
             <Field name="notes" component="textarea" placeholder="Notes" />
@@ -127,7 +118,9 @@ const SignIn = ({darkMode, handleSubmit}) => {
         </form>
       )}
     />
-  </Styles>)
-} 
+  </Styles>) 
+    } 
 
-export default React.memo(SignIn)
+
+
+export default BarberAppointment
