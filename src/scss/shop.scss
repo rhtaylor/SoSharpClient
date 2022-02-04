@@ -11,11 +11,16 @@
     background-repeat: no-repeat; 
     max-height: auto !important;
     min-height: 400px; 
+    min-width: 400px; 
+    max-width: 500px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: 50%; 
+    background-size: 100%; 
+    margin-right: 0% !important; 
+    margin-left: 32vw; 
     background-position: center;
+    box-shadow: 1px 2px 2px rgb(5, 5, 5), 2px 1px 1px rgba(245, 245, 245, 0.712);
 } 
 
 .soSharpDark{
@@ -46,10 +51,16 @@
     color: black !important;
 } 
 .open{
-    text-shadow: 1px 1px #0ff !important;
+    text-shadow: 1px 1px rgb(166, 255, 0) !important;
     color: greenyellow
 } 
 .closed{
     text-shadow: 1px 1px  rgb(107, 94, 94) !important; 
     color: rgba(3, 3, 3, 0.692)
+} 
+.thin{ 
+    -webkit-font-smoothing: antialiased;
+    font-weight: normal; 
+    font-size: 1.5em;
+    transform: scale(1, 1.5);
 }
