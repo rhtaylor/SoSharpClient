@@ -24,7 +24,9 @@ const Index = () => {
     const [adminDisplay, checkAdminDisplay] = useState(false) 
     const [words, inputUpdate] = useState('')
     const [darkMode, setMode] = useState(false)
-    const [password, dispatchPassword] = useReducer(passwordReducer, '') 
+    const [password, dispatchPassword] = useReducer(passwordReducer, '')
+    const [open, setOpen] = useState(false)
+    const [willOpen, openingIn] = useState(undefined)
 
 
     const showAdmin = () =>{
@@ -46,16 +48,39 @@ const Index = () => {
         } 
     },[dispatchPassword, words, ROOT_USER ]) 
 
-    useEffect(()=>{
+    
+    useEffect(()=>{ 
+        let today = new Date(); 
+        debugger 
+        if (today.getHours() > 9 && today.getHours() < 17){
+            setOpen(true)
+        }
         if (words === '50$ifyouaint'){
             checkAdmin(true)
-        }
-    }, [updateField, words])
+        } 
+        const timeToOpen = () =>{
+            let today = new Date();  
+            let now =  today.getHours() 
+            if (now < 9 ){
+              let time = 9 - now 
+              openingIn(time)
+            } 
+            else if (now > 17){
+                debugger 
+               let time =  24 - now + 9 
+               openingIn(time)
+            }  
+         } 
+         timeToOpen();
+    
+
+    }, [updateField, words, openingIn])
     
 
     const toggleMode = () =>{
         darkMode ? setMode(false) : setMode(true)
-      } 
+      }  
+    
       
     return(<Row key={darkMode} className={`d-flex flex-row   ${ darkMode ? 'bg-dark' : 'bg-white'}bg-dark`}>  
     <Col className={`flex-column text-center justify-content-left mr-5 ${darkMode ? 'bg-dark' : 'bg-white'}`}> 
@@ -68,6 +93,10 @@ const Index = () => {
     <CutNavBar darkMode={darkMode} /> 
     <div className={`${ darkMode ? 'bg-dark soSharpDark' : 'bg-white soSharpLite'} `}> 
 
+    </div> 
+    <div className="d-flex flex-column justify-content-center"> 
+      <h1 className={`${open ? 'open' : 'closed'}`}>{ open ? 'Open': 'Closed'}</h1> 
+      <h4 className={`${ open ? 'd-none' : 'closed'}`} >Will open in { open ? '' : `${ willOpen }`} hours</h4>
     </div>
     </Col>
     </Row>

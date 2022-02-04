@@ -9,9 +9,8 @@
     background-image: url('../images/sharp_logo.jpg'); 
     background-position: center;
     background-repeat: no-repeat; 
-    max-height: 300px; 
-    min-height: 300px;
-    background-repeat: no-repeat;  
+    max-height: auto !important;
+    min-height: 400px; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -20,7 +19,8 @@
 } 
 
 .soSharpDark{
-    background-image: url('../images/header.png'); 
+    background-image: url('../images/header.png');
+    background-position: center;
     max-height: 300px; 
     min-height: 300px;
     background-repeat: no-repeat;  
@@ -44,4 +44,12 @@
 } 
 .bg-white, label{
     color: black !important;
+} 
+.open{
+    text-shadow: 1px 1px #0ff !important;
+    color: greenyellow
+} 
+.closed{
+    text-shadow: 1px 1px  rgb(107, 94, 94) !important; 
+    color: rgba(3, 3, 3, 0.692)
 }
