@@ -16,11 +16,9 @@ export const SIGNED_IN = ({phone, barber}) => {
     }
 } 
 
-export const ROOT_USER = ({password}) => {
-    return (dispatch) => {
-        dispatch({ 
-            type: 'ROOT_USER',
-            payload: {password}
-        })
-    }
+export const ROOT_USER = (password) => { 
+        return{ 
+            type: 'IS_ADMIN',
+            payload: true
+        }
 }
