@@ -1,13 +1,23 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useEffect } from 'react'
+import { useState } from "react"; 
+
 import { Form, Field } from 'react-final-form' 
 import Styles from "./Styles";
 import '../scss/shop.scss' 
 import {v1 as uuid} from 'uuid'
 
-const SignIn = ({darkMode, handleSubmit}) => { 
+const SignIn = ({darkMode, handleSubmit}) => {  
+
+    const [myTime, setCheckIn] = useState()  
     
-    debugger
+    useEffect(()=>{
+    const today = new Date(); 
+     let hour =  today.getHours() 
+     let minutes = today.getMinutes(); 
+      setCheckIn(hour)
+      debugger
+    },[setCheckIn, myTime])
+    
     return( 
     <Styles className={`${darkMode ? 'bg-dark text-white' : 'bg-white'}`}>
     <h1 className={`${darkMode ? 'text-white' : 'text-black'}`}>Sign In</h1>
@@ -29,7 +39,7 @@ const SignIn = ({darkMode, handleSubmit}) => {
               key={uuid()}
             />
           </div>
-          
+
           <div key={darkMode} className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
             <label key={uuid()}  
             className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Last Name</label>
@@ -110,6 +120,10 @@ const SignIn = ({darkMode, handleSubmit}) => {
           <div>
             <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Notes</label>
             <Field name="notes" component="textarea" placeholder="Notes" />
+          </div> 
+          <div>
+          <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>Checkin Time</label>
+            <Field name="checkInTime" component="textarea" value={myTime} />
           </div>
           <div className="buttons">
             <button type="submit" disabled={submitting || pristine}>

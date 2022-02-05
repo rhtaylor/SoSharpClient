@@ -20,21 +20,31 @@ export {ToggleMode}
 function App() {  
   const state = useSelector((state)=> state ) 
   const dispatch = useDispatch() 
-  const AC = bindActionCreators(actionCreators, dispatch)
+  const {SIGN_IN} = bindActionCreators(actionCreators, dispatch)
  
 
   const [darkMode, setMode] = useState(false) 
-  const [appointment, setAppointment] = useState(undefined) 
+  const [appointment, setAppointment] = useState({}) 
   const [waiting, setWaiting] = useState([])
 
   const toggleMode = () =>{
     darkMode ? setMode(false) : setMode(true)
   } 
-  const createAppointment = ( event ) =>{ 
-      setAppointment(event) 
-      setWaiting(waiting.concat(appointment))
-  } 
+  const createAppointment = useCallback(( event ) =>{  
+    debugger  
+      let checkIn = new Date()
+      event.checkInTime = checkIn
+      setTimeout(()=>setAppointment(event), 10) 
+      setTimeout(()=>setWaiting(waiting.concat(appointment)), 10)
+      setTimeout(()=>SIGN_IN(event), 10)
+      console.log(state) 
+      debugger
+  },[setAppointment, setWaiting, SIGN_IN, appointment, setWaiting, waiting, state]) 
   
+  useEffect(()=>{
+
+  }, 
+  [createAppointment])
   useEffect(()=>{
    let {dark_mode} = state.adminReducer 
    debugger 
@@ -53,7 +63,7 @@ function App() {
           <ToggleMode.Provider value={darkMode}>
             <Button btn-sm className="ml-4 justify-content-left btn btn-xs" onClick={toggleMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</Button>
             <CutNavBar darkMode={darkMode} />
-            <BarberAppointment handleSubmit={createAppointment} />
+            <BarberAppointment handleSubmit={createAppointment}  />
           </ToggleMode.Provider>
           </Col>
           </Row>);

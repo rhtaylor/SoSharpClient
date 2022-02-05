@@ -1,8 +1,11 @@
-const clientReducer = (state = {}, action) =>{
-
+const clientReducer = (state = {haircuts: []}, action) =>{
+    debugger
     switch(action.type){
         case 'SIGN_IN': 
-        return {...state, haircut: action.payload} 
+        return {...state,  
+            haircuts: [...state.haircuts, action.payload]};
+        case 'WAITING': 
+        return {...state, waiting: [action.payload]}
         default: 
         return state
     }

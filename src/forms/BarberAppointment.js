@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { render } from 'react-dom' 
 import {v1 as uuid} from 'uuid'
 import Styles from './Styles'
@@ -9,7 +9,8 @@ import { ToggleMode } from '../App'
 
 
 const BarberAppointment = ({handleSubmit}) =>{ 
-        const darkMode = useContext(ToggleMode)
+        const darkMode = useContext(ToggleMode) 
+        
     
   return( <Styles className={`${darkMode ? 'bg-dark text-white' : 'bg-white'}`}>
   <h1 className={`${darkMode ? 'text-white' : 'text-black'}`}>Sign In</h1>

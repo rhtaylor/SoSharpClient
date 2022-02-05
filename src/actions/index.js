@@ -1,10 +1,8 @@
-export const SIGN_IN = ({fullName, phone,  barber, checkInTime}) => {
-        return (dispatch) => {
-            dispatch({
+export const SIGN_IN = ({firstName, lastName, phone,  barber, checkInTime}) => {
+        return {
                 type: 'SIGN_IN', 
-                payload: {fullName, phone, barber, checkInTime}
-            })
-        }
+                payload: {firstName, lastName,  barber, checkInTime}
+            }
 } 
 
 export const SIGNED_IN = ({phone, barber}) => {
