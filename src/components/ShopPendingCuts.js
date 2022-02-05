@@ -15,11 +15,11 @@ const ShopPendingCuts = ({darkMode}) =>{
     const showPendingCuts = () =>{
         return state.haircuts.reverse().map((hc,i)=>{ 
             
-            return (<tr className={`row-lg-1 row-md-1 row-sm-1 justify-content-between checkIn`}> 
+            return (<tr className={`row-lg-1 row-md-1 row-sm-1 justify-content-center checkIn`}> 
                
-                <td colspan="33%" className=' col-lg-1 col-sm-1 col-md-1'>{hc.checkInTime.toString().split(" ").splice(4,4).join('').split('').splice(0, 5).join('')}</td>
-                <td colspan="33%" className=' col-lg-1 col-sm-1 col-md-1'>{hc.firstName}</td> 
-                <td colspan="33%" className=' col-lg-1 col-sm-1 col-md-1 '>{hc.barber}</td> 
+                <td className='col-lg-6 col-sm-1 col-md-1 start'>{hc.checkInTime.toString().split(" ").splice(4,4).join('').split('').splice(0, 5).join('')}</td>
+                <td className='col-lg-6 col-sm-1 col-md-1 mid'>{hc.firstName}</td> 
+                <td className='col-lg-6 col-sm-1 col-md-1 '>{hc.barber}</td> 
                
                </tr>)})
     }

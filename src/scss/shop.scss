@@ -95,6 +95,35 @@
         }
     }
 } 
-table{
-    width: 100% !important;
+table{ 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+    width: 100% !important; 
+   
+} 
+tr{ 
+    justify-content: center;
+    width: 25%;
+} 
+td{ 
+    width: 33%;
+    flex-direction: row;
+    justify-content: center; 
+    margin-left: 0%; 
+    margin-right: 0%;
+} 
+@media only screen and (min-width: 360px) and (max-width: 1040px){
+tr{
+    width: 100%;
+}
+.start{ 
+    margin-right: 10% !important; 
+    padding-right: 0%; 
+    width: 50%;
+}
+.mid{
+    margin-left: 4% !important; 
+    margin-right: 3% !important;
+} 
 }
