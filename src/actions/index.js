@@ -21,4 +21,18 @@ export const ROOT_USER = (password) => {
             type: 'IS_ADMIN',
             payload: true
         }
+} 
+
+export const DARK_MODE = (mode) => { 
+    return{ 
+        type: 'IS_DARK',
+        payload: true
+    }
+} 
+
+export const LITE_MODE = (mode) => { 
+    return{ 
+        type: 'IS_DARK',
+        payload: false
+    }
 }

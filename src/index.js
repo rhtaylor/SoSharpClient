@@ -22,7 +22,7 @@ ReactDOM.render(
    <Router>
     <Routes>
       <Route path="/CheckIn" element={<App />} /> 
-      <Route exact path="CheckedIn"  element={ <ShopPendingCuts key={uuid()} /> } />
+      <Route exact path="/CheckedIn"  element={ <ShopPendingCuts key={uuid()} /> } />
       <Route exact path="/"  element={ <Index key={uuid()} /> } />
       </Routes> 
       </Router>

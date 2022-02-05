@@ -1,4 +1,4 @@
-import {useState, createContext, useCallback} from 'react'
+import {useState, createContext, useCallback, useEffect} from 'react'
 import {Button} from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import ShopPendingCuts from './components/ShopPendingCuts'
@@ -18,32 +18,41 @@ export {ToggleMode}
 
 
 function App() {  
-  // const state = useSelector((state)=> state ) 
-  // const dispatch = useDispatch() 
-  // const AC = bindActionCreators(actionCreators, dispatch)
+  const state = useSelector((state)=> state ) 
+  const dispatch = useDispatch() 
+  const AC = bindActionCreators(actionCreators, dispatch)
  
 
   const [darkMode, setMode] = useState(false) 
   const [appointment, setAppointment] = useState(undefined) 
   const [waiting, setWaiting] = useState([])
 
-  const toggleMode = () =>{ 
-    debugger
+  const toggleMode = () =>{
     darkMode ? setMode(false) : setMode(true)
   } 
   const createAppointment = ( event ) =>{ 
       setAppointment(event) 
       setWaiting(waiting.concat(appointment))
-  }
+  } 
+  
+  useEffect(()=>{
+   let {dark_mode} = state.adminReducer 
+   debugger 
+   if(dark_mode){ 
+     setMode(true)
+   }
+
+  },[state])
+
 
   return (<Row className="d-flex flex-row justify-content-left">
-          <Col  md={2} className="d-flex flex-column mr-0 pr-0">
+          <Col  md={2} className={`d-flex flex-column mr-0 pr-0 ${darkMode ? 'bg-dark': 'bg-white'}`}>
             <BarberPole darkMode={darkMode}/>
           </Col>
           <Col>
           <ToggleMode.Provider value={darkMode}>
             <Button btn-sm className="ml-4 justify-content-left btn btn-xs" onClick={toggleMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</Button>
-            <CutNavBar />
+            <CutNavBar darkMode={darkMode} />
             <BarberAppointment handleSubmit={createAppointment} />
           </ToggleMode.Provider>
           </Col>

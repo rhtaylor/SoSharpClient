@@ -4,7 +4,7 @@ const BarberPole = ({darkMode}) =>{
        switch(darkMode){ 
         case true :
         return( 
-           <div key={darkMode} className="d-flex flex-column pole mr-0">
+           <div key={darkMode} className="d-flex flex-column pole mr-0 barberPole">
            <img _ngcontent-wfs-c1="" class="img img-responsive block-center img-fit" src="https://cdna.artstation.com/p/assets/images/images/022/388/048/original/luna-ang-barberpoleingame4.gif?1575265726" alt="Barber Pole Game Asset" style={{"min-height": "100vh", 'min-width': '300px'}}></img>
             </div>);
         case false:

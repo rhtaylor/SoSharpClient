@@ -17,8 +17,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: 100%; 
-    margin-right: 0% !important; 
-    margin-left: 32vw; 
+   
     background-position: center;
     box-shadow: 1px 2px 2px rgb(5, 5, 5), 2px 1px 1px rgba(245, 245, 245, 0.712);
 } 
@@ -63,4 +62,26 @@
     font-weight: normal; 
     font-size: 1.5em;
     transform: scale(1, 1.5);
+} 
+
+@media only screen and (min-width: 360px) and (max-width: 1040px){ 
+    .soSharpLite{
+        max-height: auto !important; 
+        background-position: center !important;
+        min-height: 400px; 
+        min-width: 400px; 
+        max-width: 500px;
+        -webkit-background-size:cover; 
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: 75% !important;
+    } 
+    .soSharpDark{
+        background-size: 100% !important; 
+        background-position: top;
+    } 
+    .pole, .barberPole{
+        display: none !important; 
+        
+    }
 }

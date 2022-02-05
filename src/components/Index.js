@@ -8,14 +8,13 @@ import {v1 as uuid} from 'uuid'
 
 const Index = () => {  
     const state = useSelector((state) => state.adminReducer)
-    console.log(state)
+    console.log('STATE!!!:::', state)
     const dispatch = useDispatch() 
 
-    const {ROOT_USER} = bindActionCreators(actionCreators, dispatch)
+    const {ROOT_USER, DARK_MODE, LITE_MODE} = bindActionCreators(actionCreators, dispatch)
     const localState = localStorage;
 
-    const passwordReducer = (state, action)=>{ 
-        debugger
+    const passwordReducer = (state, action)=>{
         if (action.type === 'click'){ inputUpdate(action.payload)} 
         if (action.type === 'admin'){ checkAdmin(action.payload)}
     } 
@@ -35,15 +34,16 @@ const Index = () => {
     const updateField = useCallback((e) =>{ 
         e.preventDefault(); 
         let val = e.target.value 
-        debugger
+        
         setTimeout(()=>{ dispatchPassword({type: 'click', payload: val} ) 
     }, 30)
         console.log(words)
-        if(words === '50$ifyouaint'){
+        if(words === '50$ifyouaint'){ 
+            ROOT_USER(true) 
+            debugger
             setTimeout(()=>{ dispatchPassword({ type: 'admin', payload: true}) 
         }, 30);
-            setTimeout(()=>console.log('async fix'), 100) 
-            ROOT_USER(true)
+            setTimeout(()=>console.log('async fix'), 100)
             localState.setItem('admin_in', true)
         } 
     },[dispatchPassword, words, ROOT_USER ]) 
@@ -51,7 +51,7 @@ const Index = () => {
     
     useEffect(()=>{ 
         let today = new Date(); 
-        debugger 
+    
         if (today.getHours() > 9 && today.getHours() < 17){
             setOpen(true)
         }
@@ -76,21 +76,26 @@ const Index = () => {
     }, [updateField, words, openingIn])
     
 
-    const toggleMode = () =>{
-        darkMode ? setMode(false) : setMode(true)
+    const toggleMode = () =>{ 
+        debugger
+        if(darkMode){  
+            setMode(false) 
+            LITE_MODE() } 
+        else { setMode(true) 
+             DARK_MODE() }
       }  
     
       
-    return(<Row key={darkMode} className={`d-flex flex-row justify-content-center  ${ darkMode ? 'bg-dark' : 'bg-white'}bg-dark`}>  
-    <Col className={`flex-column text-center justify-content-left mr-5 ${darkMode ? 'bg-dark' : 'bg-white'}`}> 
-    <Button sm id="admin" className='d-flex justify-content-left btn-sm' onClick={(e)=>showAdmin(e)}>Admin?</Button>
+    return(<Row key={darkMode} className={`d-flex flex-row justify-content-center w-100 ${ darkMode ? 'bg-dark' : 'bg-white'}bg-dark`}>  
+    <Col className={`flex-column text-center justify-content-left mr-0 ${darkMode ? 'bg-dark' : 'bg-white'}`}> 
+    <Button sm id="admin" className='d-flex mt-2 ml-4 justify-content-left btn-lg w-10' onClick={(e)=>showAdmin(e)}>Admin?</Button>
     <form className={`d-${ adminDisplay ? 'flex' : 'none'} flex-row ${darkMode ? 'bg-dark' : 'bg-white'}`} 
         onChange={(e)=>updateField(e)}>
         <input type="password" name="password"/>
     </form> 
     <Button key={words === '50$ifyouaint'} btn-sm className={`d-${ admin ? 'flex' : 'none'} ml-4 justify-content-left btn btn-xs ${darkMode ? 'bg-dark' : 'bg-white'}`} onClick={toggleMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</Button>
     <CutNavBar darkMode={darkMode} /> 
-    <div className={`${ darkMode ? 'bg-dark soSharpDark' : 'd-flex flex-column justify-content-center mr-0 bg-white soSharpLite'} `}> 
+    <div className={`${ darkMode ? 'bg-dark soSharpDark' : 'd-flex flex-column justify-content-center mx-auto bg-white soSharpLite'} `}> 
 
     </div> 
     <div className="d-flex flex-column justify-content-center"> 
@@ -98,7 +103,7 @@ const Index = () => {
       <h4 className={`${ open ? 'd-none' : 'closed'}`} >Will open in { open ? '' : `${ willOpen }`} hours</h4>
     </div> 
     <div className='d-flex flex-column justify-content-center'>
-      <p>5630 W Camelback Rd UNIT 119, Glendale, AZ 85301</p> 
+      <p className='text-wrap'>5630 W Camelback Rd UNIT 119, Glendale, AZ 85301</p> 
       <p>(623) 937-4277</p>
       <p>Monday: Closed</p> 
       <p>Tuesday: 9AM-5PM</p> 
