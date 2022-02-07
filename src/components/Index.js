@@ -5,7 +5,7 @@ import CutNavBar from './CutNavBar';
 import { bindActionCreators } from 'redux'; 
 import { actionCreators } from '../actions/actionCreators';
 import {v1 as uuid} from 'uuid' 
-
+import Loading from './Loading';
 const Index = () => {  
     const state = useSelector((state) => state.adminReducer)
     console.log('STATE!!!:::', state)
@@ -26,7 +26,7 @@ const Index = () => {
     const [password, dispatchPassword] = useReducer(passwordReducer, '')
     const [open, setOpen] = useState(false)
     const [willOpen, openingIn] = useState(undefined)
-
+    const [loading, setLoading] = useState(false)
 
     const showAdmin = () =>{
         checkAdminDisplay(true)
@@ -85,7 +85,9 @@ const Index = () => {
              DARK_MODE() }
       }  
     
-      
+    if (loading){
+        return <Loading />
+    }  
     return(<Row key={darkMode} className={`d-flex flex-row justify-content-center w-100 ${ darkMode ? 'bg-dark' : 'bg-white'}bg-dark`}>  
     <Col className={`flex-column text-center justify-content-left mr-0 ${darkMode ? 'bg-dark' : 'bg-white'}`}> 
     <Button sm id="admin" className='d-flex mt-2 ml-4 justify-content-left btn-lg w-10' onClick={(e)=>showAdmin(e)}>Admin?</Button>
