@@ -80,18 +80,36 @@ const BarberAppointment = ({handleSubmit}) =>{
                   name="barber"
                   component="input"
                   type="radio"
-                  value="Eriq"
+                  value="Greg"
                 />{' '}
-                Eriq
+                Greg
               </label>
               <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
                 <Field
                   name="barber"
                   component="input"
                   type="radio"
-                  value="Becky"
+                  value="Tre"
                 />{' '}
-                Becky
+                Tre
+              </label> 
+              <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
+                <Field
+                  name="barber"
+                  component="input"
+                  type="radio"
+                  value="Philly"
+                />{' '}
+                Philly
+              </label>
+              <label className={`${darkMode ? 'bg-dark' : 'bg-white'}`}>
+                <Field
+                  name="barber"
+                  component="input"
+                  type="radio"
+                  value="Mike"
+                />{' '}
+                Mike
               </label>
             </div>
           </div>

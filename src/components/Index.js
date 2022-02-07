@@ -108,7 +108,7 @@ const Index = () => {
     </div> 
     <div className="d-flex flex-column justify-content-center"> 
       <h1 className={`${open ? 'open thin' : 'closed'}`}>{ open ? 'Open': 'Closed'}</h1> 
-      <h4 className={`${ open ? 'd-none' : 'closed'}`} >Will open in { open ? '' : `${ willOpen }`} hours</h4>
+      {/* <h4 className={`${ open ? 'd-none' : 'closed'}`} >Will open in { open ? '' : `${ willOpen }`} hours</h4> */}
     </div> 
     <div className='d-flex flex-column justify-content-center'>
       <p className='text-wrap'>5630 W Camelback Rd UNIT 119, Glendale, AZ 85301</p> 
