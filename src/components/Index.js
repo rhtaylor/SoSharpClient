@@ -8,7 +8,7 @@ import {v1 as uuid} from 'uuid'
 import Loading from './Loading';
 const Index = () => {  
     const state = useSelector((state) => state.adminReducer)
-    console.log('STATE!!!:::', state)
+    debugger
     const dispatch = useDispatch() 
 
     const {ROOT_USER, DARK_MODE, LITE_MODE} = bindActionCreators(actionCreators, dispatch)
@@ -71,9 +71,15 @@ const Index = () => {
             }  
          } 
          timeToOpen();
-    
 
-    }, [updateField, words, openingIn])
+         debugger 
+         if (state){
+             if(state.dark_mode){
+                 setMode(true)
+             }
+         }
+
+    }, [updateField, words, openingIn, state])
     
 
     const toggleMode = () =>{ 
